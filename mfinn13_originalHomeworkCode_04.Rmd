@@ -4,6 +4,7 @@ output: html_document
 date: "2025-03-25"
 ---
 
+
 ## Problem 1: Z Test Function
 Write a simple R function, Z.prop.test(), that can perform one- or two-sample Z-tests for proportion data, using the following guidelines:
 Your function should take the following arguments: p1 and n1 (no default) representing the estimated proportion and sample size (i.e., based on your sample data); p2 and n2 (both defaulting to NULL) that contain a second sample’s proportion and sample size data in the event of a two-sample test; p0 (no default) as the expected value for the population proportion; and alternative (default “two.sided”) and conf.level (default 0.95), to be used in the same way as in the function t.test().
@@ -22,8 +23,13 @@ For all test alternatives (“two.sided”, “greater”, “less”), calculat
 ```{r}
 #we are creating a function that can run a z-test for proportions
 #must return z value, p value, CI,
+
+options(repos = c(CRAN = "https://cloud.r-project.org")) #I was getting errors while trying to knit and apparently its because I installed a package without mirroring my CRAN
+
 install.packages("crayon") #this package allows for colorful writing, which I want to use for my warning message.
 library(crayon)
+
+
 
 Z.prop.test <- function(p1, n1, p2 = NULL, n2 = NULL, p0, alternative = "two.sided", conf.level = 0.95){
   
@@ -208,7 +214,7 @@ pointEstimate <- data.frame(predict(lm_longVsBrainSize, newdata = data.frame(Bra
 paste("The point estimate is ", pointEstimate[1], ".", " The 90% confidence interval for this point estimate is ", pointEstimate[2], ",", pointEstimate[3], sep = "")  
 ```
 
-###LOG(LONGEVITY) ~ LOG(BRAIN SIZE)
+### LOG(LONGEVITY) ~ LOG(BRAIN SIZE)
 ```{r}
 library(geomtextpath)
 library(ggplot2)
